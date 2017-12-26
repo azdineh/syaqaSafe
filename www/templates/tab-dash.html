@@ -1,17 +1,67 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="">
   <ion-content class="padding">
-    <h2>Welcome to Ionic</h2>
-    <p>
-    This is the Ionic starter for tabs-based apps. For other starters and ready-made templates, check out the <a href="http://market.ionic.io/starters" target="_blank">Ionic Market</a>.
-    </p>
-    <p>
-      To edit the content of each tab, edit the corresponding template file in <code>www/templates/</code>. This template is <code>www/templates/tab-dash.html</code>
-    </p>
-    <p>
-    If you need help with your app, join the Ionic Community on the <a href="http://forum.ionicframework.com" target="_blank">Ionic Forum</a>. Make sure to <a href="http://twitter.com/ionicframework" target="_blank">follow us</a> on Twitter to get important updates and announcements for Ionic developers.
-    </p>
-    <p>
-      <b>Psst!</b> - Try <a href="http://view.ionic.io/">Ionic View</a> to easily share and test your app with clients and co-workers.
-    </p>
+
+    <div id="sqas-header-title">
+      <div style="width: 30%">
+        <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="">
+      </div>
+      <div>
+        قائمة الإعدادات
+      </div>
+    </div>
+    <br/>
+    <div class="sqas-menu">
+      <button class="button sqas-href-item" ng-click="goToPage('anti-somnolence')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/anti-somnolence.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">مضاد بوادر الغفوة</div>
+            <div class="sqas-item-desc" >عند السفر مفردا تزداد احتمالية الاستسلام للغفوة أثناء السياقة، عند تشغيل هذه الميزة، سيقوم الهاتف
+              بمحاولة تكسير الرتابة الصوتية بشكل متككر حتى يمنع الدماغ من السهو أو الغفوة..
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="goToPage('smart-notification')"> 
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/smart-notification.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">إشعارات ذكية</div>
+            <div class="sqas-item-desc">تمكن هذه الخاصية من تفعيل الإشعارات الصوتية أو الكتابية و الني تهتم بشأن السياقة السليمة..</div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="goToPage('safe-modes')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/safe-modes.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">أوضاع الأمآن</div>
+            <div class="sqas-item-desc">تسمح هذه الميزة مساعدة الهاتف على اختيار النصائح و الإرشادات ألأكثر ملائمة مع  حالة السيارة..</div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="goToPage('important-numbers')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+             <img src="img/important-numbers.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">أرقام مهمة</div>
+            <div class="sqas-item-desc"> تزويد الهاتف ببعض الأرقام المهمة بالإضافة إلى الأرقام الضرورية، والتي فد يحتاجها السائق فيما بعد..</div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <div style="font-size: 1.6vmax;margin-top: 4%;color: #dda100;opacity: 0.5" dir="rtl">
+     
+      <span class="icon ion-ios-information-outline" > قم بالضغط على إحدى الإختيارات للإطلاع على مزيد من التفاصيل </span>
+    </div>
   </ion-content>
 </ion-view>

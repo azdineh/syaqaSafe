@@ -50,31 +50,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.anti-somnolence', {
+      url: '/anti-somnolence',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-anti-somnolence': {
+          templateUrl: 'templates/tab-anti-somnolence.html',
+          controller: 'AntiSomnolenceCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.smart-notification', {
+    url: '/smart-notification',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-smart-notification': {
+        templateUrl: 'templates/tab-smart-notification.html',
+        controller: 'SmartNotificationCtrl'
+      }
+    }
+  })
+
+  .state('tab.safe-modes', {
+    url: '/safe-modes',
+    views: {
+      'tab-safe-modes': {
+        templateUrl: 'templates/tab-safe-modes.html',
+        controller: 'SafeModesCtrl'
+      }
+    }
+  })
+  .state('tab.important-numbers', {
+    url: '/important-numbers',
+    views: {
+      'tab-important-numbers': {
+        templateUrl: 'templates/tab-important-numbers.html',
+        controller: 'ImportantNumbersCtrl'
       }
     }
   });

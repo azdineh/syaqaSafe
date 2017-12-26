@@ -1,1 +1,78 @@
 /* Empty. Add your own CSS if you like */
+
+@font-face{
+    font-family: sqasfont;
+    src: url('../font/NeoSansArabic.ttf')
+}
+
+ion-content{
+    /* Webkit (Safari/Chrome 10) */ 
+    background-color: #001a1e;
+    color: #dedede;
+    padding: 8px;
+    text-align: right;
+    font-family: sqasfont;
+}
+
+
+
+#sqas-header-title,.sqas-menu-item{
+   display: flex; 
+   flex-direction: row;
+   direction: rtl;
+   padding: 4px;
+}
+
+#sqas-header-title{
+    background-color: rgba(240, 240, 240, 0.002);
+    border-radius: 8px; 
+    border: none;
+}
+
+#sqas-header-title>div{
+}
+
+#sqas-header-title>div:nth-child(2){
+    flex-grow:2;
+    font-size: 4vmax;
+    padding-top: 12%;
+    padding-right: 10px;
+} 
+
+.sqas-menu-item>div:nth-child(1){
+    flex-basis: 25%;
+}
+.sqas-menu-item>div:nth-child(2){
+    flex-basis: 90%;
+}
+.sqas-href-item{
+    margin-top: 4px;
+    color: lightgray;
+    width: 100%;
+    text-align: right;
+    background-color: rgba(1,1,1,0.05);
+    border:1px solid rgba(85, 85, 85,0.5);
+    border-radius: 8px;
+    font-family: sqasfont;
+}
+
+
+
+.sqas-item-title{
+    padding-top: 4px;
+    font-size: 3vmax;
+}
+
+.sqas-item-desc{
+    font-size: 1.8vmax;
+    color: darkslategray;
+    line-height: 3vmax;
+    text-align: justify;
+}
+
+.sqas-menu-item img{
+    width: 70%;
+    margin-top: 40%;
+    margin-right: 0%;
+    opacity: 0.35
+}
