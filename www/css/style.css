@@ -24,9 +24,13 @@ ion-content{
 }
 
 #sqas-header-title{
-    background-color: rgba(240, 240, 240, 0.002);
+    background-color: rgba(69, 130, 158, 0.014);
     border-radius: 8px; 
     border: none;
+}
+
+#sqas-header-title img{
+    
 }
 
 #sqas-header-title>div{
@@ -36,7 +40,8 @@ ion-content{
     flex-grow:2;
     font-size: 4vmax;
     padding-top: 12%;
-    padding-right: 10px;
+    
+    text-align: center;
 } 
 
 .sqas-menu-item>div:nth-child(1){
@@ -71,8 +76,101 @@ ion-content{
 }
 
 .sqas-menu-item img{
-    width: 70%;
-    margin-top: 40%;
-    margin-right: 0%;
+    width: 90%;
+    margin-top: 20%;
+    margin-right: -10%;
     opacity: 0.35
+}
+
+.sqas-sub-logo{
+    animation-name: syaqaanime2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+   /*  animation-direction: alternate; */
+    animation-timing-function: ease-in-out;
+}
+@keyframes syaqaanime2 {
+    0% {
+        opacity:0.9;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}
+
+.sqas-main-logo{
+    animation-name: syaqaanime3;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+@keyframes syaqaanime3 {
+    0% {
+        opacity:0.9;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.sqas-content-container{
+    display: flex;
+    flex-flow: column;
+    height: 75%;
+    justify-content: space-around;
+}
+
+.sqas-content-container div{
+    padding: 4px;
+}
+.sqas-content-container div:nth-child(1){
+    text-align: center;
+}
+
+#sqas-barr{
+
+    background-color: lightgrey;
+    width: 20px;
+    height: 100%
+}
+
+.sqas-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    border: 0px solid #dedede
+}
+
+.sqas-main-co2ntainer>div{
+    border: 1px solid #dedede
+}
+.circleanim{
+    animation-name: syaqaanime1;
+    animation-duration: 20s;
+    animation-iteration-count:infinite;
+   /*  animation-direction: alternate; */
+    animation-timing-function: linear;
+
+    
+
+}
+
+@keyframes syaqaanime1 {
+    0% {
+        transform: rotate(0deg);
+        opacity:0.5;   
+    }
+    50% {
+        transform: rotate(360deg);
+        opacity: 0.0;  
+    }
+    100% {
+        transform: rotate(720deg);
+        opacity: 0.5;  
+    }
 }

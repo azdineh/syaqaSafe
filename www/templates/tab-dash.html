@@ -2,15 +2,29 @@
   <ion-content class="padding">
 
     <div id="sqas-header-title">
-      <div style="width: 30%">
+      <div style="width: 35%">
         <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="">
       </div>
-      <div>
+      <div style="padding-top: 14%">
         قائمة الإعدادات
       </div>
     </div>
     <br/>
     <div class="sqas-menu">
+      <button class="button sqas-href-item" ng-click="goToPage('smart-notification')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/smart-notification.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">إشعارات ذكية</div>
+            <div class="sqas-item-desc">
+              تمكن هذه الخاصية من تفعيل الإشعارات الصوتية و/أو الكتابية و الني تهتم بشأن السياقة السليمة و التي تنضبط كذلك مع متغيرات الوقت
+              و الطقس و مستجدات قانون السير ..
+            </div>
+          </div>
+        </div>
+      </button>
       <button class="button sqas-href-item" ng-click="goToPage('anti-somnolence')">
         <div class="sqas-menu-item">
           <div style="padding: 4px;">
@@ -18,20 +32,10 @@
           </div>
           <div>
             <div class="sqas-item-title">مضاد بوادر الغفوة</div>
-            <div class="sqas-item-desc" >عند السفر مفردا تزداد احتمالية الاستسلام للغفوة أثناء السياقة، عند تشغيل هذه الميزة، سيقوم الهاتف
-              بمحاولة تكسير الرتابة الصوتية بشكل متككر حتى يمنع الدماغ من السهو أو الغفوة..
-            </div>
-          </div>
-        </div>
-      </button>
-      <button class="button sqas-href-item" ng-click="goToPage('smart-notification')"> 
-        <div class="sqas-menu-item">
-          <div style="padding: 4px;">
-            <img src="img/smart-notification.png" alt="">
-          </div>
-          <div>
-            <div class="sqas-item-title">إشعارات ذكية</div>
-            <div class="sqas-item-desc">تمكن هذه الخاصية من تفعيل الإشعارات الصوتية أو الكتابية و الني تهتم بشأن السياقة السليمة..</div>
+            <div class="sqas-item-desc">
+              عند السفر مفردا تزداد احتمالية الاستسلام للغفوة أثناء السياقة، عند تشغيل هذه الميزة، سيقوم الهاتف بمرافقتك بنصائح و تأتيرات
+                صوتية مناسبة لتوعية دماغك بضرورة أخذ قسط من الراحة إذا استلزم الأمر ذلك ..
+                        </div>
           </div>
         </div>
       </button>
@@ -42,26 +46,33 @@
           </div>
           <div>
             <div class="sqas-item-title">أوضاع الأمآن</div>
-            <div class="sqas-item-desc">تسمح هذه الميزة مساعدة الهاتف على اختيار النصائح و الإرشادات ألأكثر ملائمة مع  حالة السيارة..</div>
+            <div class="sqas-item-desc">
+              تسمح هذه الميزة مساعدة الهاتف على اختيار النصائح و الإرشادات ألأكثر ملائمة مع حالة الثنائي سائق-سيارة ..
+
+            </div>
           </div>
         </div>
       </button>
       <button class="button sqas-href-item" ng-click="goToPage('important-numbers')">
         <div class="sqas-menu-item">
           <div style="padding: 4px;">
-             <img src="img/important-numbers.png" alt="">
+            <img src="img/important-numbers.png" alt="">
           </div>
           <div>
             <div class="sqas-item-title">أرقام مهمة</div>
-            <div class="sqas-item-desc"> تزويد الهاتف ببعض الأرقام المهمة بالإضافة إلى الأرقام الضرورية، والتي فد يحتاجها السائق فيما بعد..</div>
+            <div class="sqas-item-desc"> تزويد الهاتف ببعض الأرقام المهمة بالإضافة إلى ضبط الأرقام الضرورية الأخرى، والتي فد يحتاجها السائق فيما بعد ..
+
+            </div>
           </div>
         </div>
       </button>
     </div>
 
     <div style="font-size: 1.6vmax;margin-top: 4%;color: #dda100;opacity: 0.5" dir="rtl">
-     
-      <span class="icon ion-ios-information-outline" > قم بالضغط على إحدى الإختيارات للإطلاع على مزيد من التفاصيل </span>
+
+      <span class="icon ion-ios-information-outline"> قم بالضغط على إحدى الإختيارات للإطلاع على مزيد من التفاصيل </span>
+      <br/>
+      <br/>
     </div>
   </ion-content>
 </ion-view>

@@ -1,0 +1,28 @@
+{
+ "shortsounds":[
+{"id":"32","name":"alan1","type":"ss"},
+{"id":"1","name":"deep1","type":"ss"},
+{"id":"2","name":"dum1","type":"ss"},
+{"id":"3","name":"hello1","type":"ss"},
+{"id":"4","name":"hello2","type":"ss"},
+{"id":"5","name":"house1","type":"ss"},
+{"id":"6","name":"papoutai","type":"ss"},
+{"id":"7","name":"pulse1","type":"ss"},
+{"id":"13","name":"savage1","type":"ss"},
+{"id":"14","name":"snake1","type":"ss"},
+{"id":"15","name":"zedge1","type":"ss"},
+{"id":"16","name":"zedge2","type":"ss"},
+{"id":"17","name":"zedge3","type":"ss"},
+{"id":"18","name":"adwya","type":"ssa"},
+{"id":"19","name":"ghafwa","type":"ssa"},
+{"id":"20","name":"harara","type":"ssa"},
+{"id":"23","name":"mosba9an","type":"ssa"},
+{"id":"24","name":"nassiha1","type":"ssa"},
+{"id":"25","name":"nassiha2","type":"ssa"},
+{"id":"26","name":"nassiha3","type":"ssa"},
+{"id":"27","name":"nassiha4","type":"ssa"},
+{"id":"28","name":"no3ass1","type":"ssa"},
+{"id":"29","name":"tfawoh","type":"ssa"},
+{"id":"30","name":"wajbadassima","type":"ssa"}
+ ]
+}

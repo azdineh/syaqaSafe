@@ -1,3 +1,3 @@
-angular.module('starter.controllers')
+angular.module('starter')
 
     .controller('ImportantNumbersCtrl', function ($scope) { })

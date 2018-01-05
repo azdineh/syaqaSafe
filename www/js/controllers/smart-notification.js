@@ -1,3 +1,5 @@
-angular.module('starter.controllers')
+angular.module('starter')
 
-.controller('SmartNotificationCtrl', function($scope) {})
+    .controller('SmartNotificationCtrl', function ($scope) {
+
+    })
