@@ -1,23 +1,28 @@
 <ion-view view-title="">
   <ion-content class="padding" on-swipe-right="alert('kkk')">
-    <div id="sqas-header-title">
-      <div style="width: 30%" >
-        <img src="img/anti-somnolence.png" style="width: 100%" alt="" ng-class="{'sqas-sub-logo':antiSsomnolenceEenabled}">
-      </div>
-      <div>
-        مضاد بوادر الغفوة
-        <div style="font-size: 2.5vmax;padding-top: 2vmax;color: yellow" ng-show="antiSsomnolenceEenabled">نشط</div>
-      </div>
-    </div>
-
+      <div style="height: 20%" class="sqas-header">
+          <table style="height: 100% ">
+            <tr>
+              <td style="width: 70%">
+                <div>
+                  مضاد بوادر الغفوة
+                </div>
+              </td>
+              <td>
+                  <img src="img/anti-somnolence.png" style="width: 100%;opacity: 0.85" ng-class="antiSsomnolenceEenabled==true?'sqas-sub-logo':''" alt="">
+      
+                </td>
+            </tr>
+          </table>
+        </div>
     <div class="sqas-content-container">
       <div class="sqas-img">
-        <img src="img/anti-somnolence-bann.png" style="height: 30vmax;filter: grayscale(75%);opacity: 0.45">
+        <img src="img/anti-somnolence-bann.png" style="height: 30vmax;filter: grayscale(60%);opacity: 0.7">
       </div>
-      <div class="sqas-txt" dir="rtl" style="text-align: justify;opacity: 0.7">عند السفر وحيدا لمسافات طويلة، تزداد بشكل خطير احتمالية الاستسلام للغفوة أثناء السياقة. تمكنك هذه الميزة من جعل هاتفك
-        كمرافق صوتي لك، إذ سيقوم بتوعيتك طيلة مدة السفر بنصائح صوتية متفرقة زمنيا تتناول السياقة السليمة أثناء السفر. أيصا،
+      <div class="sqas-paragraphe" dir="rtl" >عند السفر وحيدا لمسافات طويلة، تزداد بشكل خطير احتمالية الاستسلام للغفوة أثناء السياقة. تمكنك هذه الميزة من جعل هاتفك
+        كمرافق صوتي، إذ سيقوم بتوعيتك طيلة مدة السفر بنصائح صوتية متفرقة زمنيا تتناول السياقة السليمة أثناء السفر. أيضا،
         سيقوم الهاتف بإرسال إشارات صوتبة مقتناة بشكل عشوائي ليكسر أية رتابة محتملة على مستوى الدماغ و التي قد يتسبب بها جهاز
-        الراديو.
+        الراديو أو رتابة الطريق..
       </div>
       <div>
         <ul class="list list-light" style="opacity: 0.7">

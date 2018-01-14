@@ -1,12 +1,79 @@
 <ion-view view-title="Account">
   <ion-content class="padding">
-    <div id="sqas-header-title">
-      <div style="width: 30%">
-        <img src="img/important-numbers.png" style="width: 100%" alt="">
-      </div>
-      <div>
-        أرقام مهمة
-      </div>
+    <div style="height: 20%" class="sqas-header">
+      <table style="height: 100% ">
+        <tr>
+          <td style="width: 70%">
+            <div>
+              أرقام هامة
+            </div>
+          </td>
+          <td>
+            <img src="img/important-numbers.png" style="width: 100%;opacity: 0.85" alt="">
+
+          </td>
+        </tr>
+      </table>
     </div>
+
+
+    <div class="sqas-menu">
+      <button class="button sqas-href-item" ng-click="callNumber('190')">
+        <div class="sqas-menu-item">
+          <div style="padding-top: 0.5vmax;">
+            <img src="img/police.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title" style="padding-top: 1.8vmax">الشرطة</div>
+            <div class="sqas-item-desc" style="font-size: 3vmax">
+              190
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="callNumber('177')">
+        <div class="sqas-menu-item">
+          <div style="padding-top: 0.5vmax;">
+            <img src="img/darak.png" alt="" style="filter: brightness(150%);filter: sepia()">
+          </div>
+          <div>
+            <div class="sqas-item-title" style="padding-top: 1.8vmax">الدرك الملكي</div>
+            <div class="sqas-item-desc" style="font-size: 3vmax">
+              177
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="callNumber('150')">
+        <div class="sqas-menu-item">
+          <div style="padding-top: 0.5vmax;">
+            <img src="img/ambulance.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title" style="padding-top: 1.8vmax">إسعافيين/إطفائيين</div>
+            <div class="sqas-item-desc" style="font-size: 3vmax">
+              150
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="callNumber('+212522979300')">
+        <div class="sqas-menu-item">
+          <div style="padding-top: 0.5vmax;">
+            <img src="img/depannage.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title" style="padding-top: 1.8vmax">مساعدة</div>
+            <div class="sqas-item-desc" style="font-size: 3vmax" dir="rtl" lang="ar">
+              (+212) 522979300
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+<!--     <div style="text-align: left;padding-top: 1vmax">
+      <button class="button icon-left ion-chevron-left button-calm button-clear" style="font-family: sqasfont;" ng-click="goToMain()">رجوع</button>
+    </div> -->
   </ion-content>
 </ion-view>

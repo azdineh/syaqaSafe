@@ -1,30 +1,121 @@
 <ion-view view-title="">
   <ion-content class="padding" scroll="false">
-    <div id="sqas-header-title">
-      <div style="width: 33%">
-        <img src="img/logo.png" style="width: 100%" alt="" class="sqas-main-logo">
-      </div>
-      <div>
-        الواجهة الرئيسة
-      </div>
+
+    <div style="height: 20%" class="sqas-header">
+      <table style="height: 100% ">
+        <tr>
+          <td style="width: 70%">
+            <div ng-if="currentView=='main'">
+              إشعار
+            </div>
+            <div ng-if="currentView=='dashmin'" dir="rtl">
+                {{today|date:'longDate'}} 
+               <span style="font-size: 4vmax"> {{today|date:'HH:mm'}}</span>
+            </div>
+            <div ng-if="currentView=='anti-somnolence'" class="sqas-header-tito">
+              <div>مضاد الغفوة</div>
+              <div dir="rtl" style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px">
+                تنبيه صوتي
+                <span class="ion ion-volume-high"></span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <img src="img/smart-notification.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='main'">
+            <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='dashmin'">
+            <img src="img/anti-somnolence.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='anti-somnolence'">
+
+          </td>
+        </tr>
+      </table>
     </div>
 
-    <div class="sqas-main-container">
-      <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax" dir="rtl"> <span>{{today|date:'longDate'}}</span> - <span>{{today|date:'shortTime'}}</span></div>
-      <div style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px;padding-bottom: 10px"> الغفوة أخطر مما تعتقد <span class="ion ion-arrow-left-b"></span> </div>
-    
-      <div style="flex-basis: 20%"><img src="img/anti-somnolence-bann2.jpg" style="width: 100%;padding-bottom: 6px;" alt=""></div>
-      <div style="flex-grow: 1;text-align: justify;font-size: 2.3vmax ;overflow-y: scroll;" dir="rtl">
-        تنطلق في هذه الأثناء الدورة السابعة والستين للجمعية العمومية للجنة الوطنية للوقاية من حوادث السير حيث ستتم المصادقة على محضر الدورة السابقة وسيتم تقديم مشروع برنامج عمل اللجنة وميزانيتها برسم سنة 2018 والمخطط الخماسي للتواصل الشمولي للفترة 2017-2021 وعرض مجموعة من مشاريع القرارات للمصادقة عليها..
-        تنطلق في هذه الأثناء الدورة السابعة والستين للجمعية العمومية للجنة الوطنية للوقاية من حوادث السير حيث ستتم المصادقة على محضر الدورة السابقة وسيتم تقديم مشروع برنامج عمل اللجنة وميزانيتها برسم سنة 2018 والمخطط الخماسي للتواصل الشمولي للفترة 2017-2021 وعرض مجموعة من مشاريع القرارات للمصادقة عليها..
-        تنطلق في هذه الأثناء الدورة السابعة والستين للجمعية العمومية للجنة الوطنية للوقاية من حوادث السير حيث ستتم المصادقة على محضر الدورة السابقة وسيتم تقديم مشروع برنامج عمل اللجنة وميزانيتها برسم سنة 2018 والمخطط الخماسي للتواصل الشمولي للفترة 2017-2021 وعرض مجموعة من مشاريع القرارات للمصادقة عليها..
+
+    <div ng-if="currentView=='dashmin'" style="height: 78%">
+      <table class="sqas-table-dashmin">
+        <tr>
+          <td style="height: 66%">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sqas-table-flx">
+              <div class="button " ng-click="goToArchive()">
+                <img src="img/archive.png" alt="">
+              </div>
+              <div class="button " ng-click="goToDash()"> 
+                  <img src="img/more.png" alt="">
+              </div>
+              <div class="button " ng-click="goToAntiSomnolence()" >
+                <img src="img/anti-somnolence.png" alt="" ng-class="antiSsomnolenceEenabled==true?'sqas-sub-logo':''">
+              </div>
+              <div class="button " ng-click="goToImportantNumbers()">
+                  <img src="img/important-numbers.png" alt="">
+              </div>
+              <div class="button " ng-click="goToSmartNotification()">
+                <img src="img/smart-notification.png" alt="">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="position: relative;height: 76%;" ng-if="currentView=='main'">
+      <div class="ion ion-arrow-up-b" style="font-size: 6vmax;position: absolute ;color: rgb(0, 185, 252);top:-3.5vmax;right: 6.5vmax"></div>
+
+      <div class="sqas-main-container" style="border: 2px solid rgb(0, 185, 252);border-radius: 12px;overflow: hidden;border-top: 8px solid rgb(0, 185, 252);">
+        <div style="flex-basis: 5%;font-size: 3.2vmax;color: rgb(0, 0, 0);font-weight: bolder;padding-top: 14px;padding-bottom: 10px;padding-right: 8px;">
+          {{notification.title}}
+          <span class="ion ion-arrow-left-b"></span>
+        </div>
+
+        <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax;text-align: right;padding-right: 8px;color: black" dir="rtl">
+          <span>{{today|date:'longDate'}}</span> -
+          <span>{{today|date:'shortTime'}}</span>
+        </div>
+
+        <div style="flex-basis: 20%">
+          <img src="img/anti-somnolence-bann2.jpg" style="width: 100%;padding:8px" alt="">
+        </div>
+        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;" class="sqas-paragraphe" dir="rtl">
+          {{notification.text}}
+        </div>
+
+
+        <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.3)" id="sqas-barr-cntr">
+          <div id="sqas-barr" style="height: 100%;background-color: rgb(200, 33, 15);"></div>
+        </div>
+
       </div>
-      <div style="flex-basis: 4%;margin-top: 6px" id="sqas-barr-cntr">
+
+      <!--       <div style="flex-basis: 10%">
+        <button class="button icon-right ion-chevron-right button-calm button-clear" style="font-family: sqasfont;" ng-click="goToDash()">إعدادات</button>
+      </div> -->
+    </div>
+
+
+    <div class="sqas-content-container" style="height: 78%;padding: 5%;padding-top: 25%;" ng-if="currentView=='anti-somnolence'">
+      <!--       <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax" dir="rtl">
+        <span>{{today|date:'longDate'}}</span> -
+        <span>{{today|date:'shortTime'}}</span>
+      </div> -->
+
+      <!--       
+        <div style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px;padding-bottom: 10px"> الغفوة أخطر مما تعتقد
+          <span class="ion ion-arrow-left-b"></span>
+        </div> -->
+      <div style="flex-grow: 1;" class="sqas-paragraphe" dir="rtl">
+        <img src="img/anti-somnolence.png" class="sqas-sub-logo" style="width: 100%" alt="">
+      </div>
+
+      <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05)" id="sqas-barr-cntr">
         <div id="sqas-barr" style="height: 100%;background-color: yellow;"></div>
       </div>
-      <div style="flex-basis: 10%"  >
-          <button class="button icon-right ion-chevron-right button-calm button-clear" ng-click="goToDash()">إعدادات</button>
-      </div>
+
+      <!--       <div style="flex-basis: 10%">
+        <button class="button icon-right ion-chevron-right button-calm button-clear" style="font-family: sqasfont;" ng-click="goToDash()">إعدادات</button>
+      </div> -->
     </div>
 
     <br/>

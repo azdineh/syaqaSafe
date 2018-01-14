@@ -17,6 +17,12 @@ angular.module('starter')
                 case 'important-numbers':
                     $state.go('tab.important-numbers');
                     break;
+                case 'archive':
+                    $state.go('tab.archive');
+                    break;
+                case 'aboutus':
+                    $state.go('tab.aboutus');
+                    break;
             
                 default:
                     break;

@@ -92,6 +92,24 @@ angular.module('starter', ['ionic'])
       }
     }
   })
+  .state('tab.aboutus', {
+    url: '/aboutus',
+    views: {
+      'tab-aboutus': {
+        templateUrl: 'templates/tab-aboutus.html',
+        controller: 'AboutUsCtrl'
+      }
+    }
+  })
+  .state('tab.archive', {
+    url: '/archive',
+    views: {
+      'tab-archive': {
+        templateUrl: 'templates/tab-archive.html',
+        controller: 'ArchiveCtrl'
+      }
+    }
+  })
   .state('tab.main', {
     url: '/main',
     views: {

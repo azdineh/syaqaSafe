@@ -1,31 +1,7 @@
 angular.module('starter')
-    .factory('mediator', function ($q, $timeout, $interval, $http) {
+    .factory('mediator', function ($q, azdutils, $timeout, $interval, $http) {
 
 
-        var urlsuffix = "/android_asset/www/";
-        var getRandomInt = function (min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min)) + min;
-        };
-
-        /**
-         * @param url like sound/shortsounds.json
-         * @return array promise
-         */
-        var getSSfromJson = function (url) {
-            var q = $q.defer();
-
-            $http.get(urlsuffix + url)
-                .then(function (res) {
-                    q.resolve(res.data);
-                }, function (err) {
-                    console.log("Error while getting resources..");
-                    q.reject(err);
-                });
-
-            return q.promise;
-        };
 
         var mediator = function () {
             var vm = {}
@@ -33,26 +9,37 @@ angular.module('starter')
             vm.isPlaying = false;
             vm.ss = []; // short sound array
 
-            vm.playOnePulse = function (delay, ssname, elm_id) {
-                $timeout(function () {
-                    var url = urlsuffix + "media/SS/" + ssname + ".mp3";
+            vm.playOnePulse = function (delay, ssname, notification_flag, callBacki, callBackj) {
+                vm.timer2 = $timeout(function () {
+                    var url = "";
+                    if (notification_flag == false) {
+                        url = azdutils.urlsuffix + "media/SS/" + ssname + ".mp3";
+                    }
+                    else {
+                        //url = azdutils.urlsuffix + "media/notifications/" + ssname + ".mp3";
+                        url = azdutils.urlsuffix + "notifications/sounds/nassiha4.mp3";
+                    }
+
                     console.log(url);
+
                     vm.media = new Media(url,
                         function () {
                             //success , end of play record or stop
                             vm.isPlaying = false;
                             vm.media.release();
+                            callBackj();
                         }, function (err) {
                             //error
-                            console.log("error while playin a media" + err)
+                            console.log("error while playin a media" + err);
                             console.log(err);
+                            //vm.media.release();
                             vm.isPlaying = false;
-
+                            //vm.media.stop();
                         }, function (mediaStatus) {
                             if (mediaStatus == 1) {
                                 vm.isPlaying = true;
                                 vm.cancelTimerAnim();
-                                vm.animateit(elm_id);
+                                vm.animateit("sqas-barr");
                                 console.log('starting..')
                             }
                             if (mediaStatus == 4) {
@@ -60,23 +47,30 @@ angular.module('starter')
                             }
                         });
                     vm.media.setVolume('1.0');
+                    vm.media.stop();
+                    vm.media.release();
+                    callBacki();
                     vm.media.play();
+
+
                 }, delay);
             }
 
-            vm.launchPlayingPulses = function (elm_id) {
-                getSSfromJson("media/shortsounds.json")
+            //for anti-somnolence
+            vm.launchPlayingPulses = function (callBacki, callBackj) {
+
+                azdutils.getSSfromJson("media/shortsounds.json")
                     .then(function (arr) {
                         vm.ss = arr.shortsounds;
 
                         vm.timer = $interval(function () {
                             if (vm.isPlaying == false) {
-                                var random_delay = getRandomInt(1000 * 1, 1000 * 3); // [3s,7s[
-                                var random_index = getRandomInt(0, vm.ss.length);
+                                var random_delay = azdutils.getRandomInt(10, 20); // [10s,20s[
+                                var random_index = azdutils.getRandomInt(0, vm.ss.length);
                                 var current_ss = vm.ss[random_index];
                                 console.log('The next pulse in ' + random_delay + ' minutes');
                                 vm.isPlaying = true;
-                                vm.playOnePulse(random_delay, current_ss.name, elm_id);
+                                vm.playOnePulse(random_delay * 1000, current_ss.name, false, callBacki, callBackj);
                             }
                             console.log('Timer');
                         }, 1000);
@@ -91,8 +85,10 @@ angular.module('starter')
             vm.animateit = function (id) {
 
                 var w = 0;
-                var wcontainer = document.getElementById(id + '-cntr').offsetWidth;
-                console.log(wcontainer);
+                var wcontainer;
+                if (document.getElementById('sqas-barr-cntr'))
+                    wcontainer = document.getElementById('sqas-barr-cntr').offsetWidth;
+                console.log("wcontainer : " + wcontainer);
 
                 var t = $interval(function () {
                     var duration = Math.ceil(vm.media.getDuration());
@@ -103,7 +99,8 @@ angular.module('starter')
                         var w_step = wcontainer / n_iter;
                         vm.timeranim = $interval(function () {
                             w += w_step;
-                            document.getElementById(id).style.width = w + 'px';
+                            if (document.getElementById(id))
+                                document.getElementById(id).style.width = w + 'px';
                         }, 50, n_iter);
                     }
 
@@ -121,6 +118,7 @@ angular.module('starter')
                     console.log("stop playing..");
                 }
                 $interval.cancel(vm.timer);
+                $timeout.cancel(vm.timer2);
                 console.log("Timer is stopped..");
             }
 

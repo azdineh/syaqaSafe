@@ -1,0 +1,45 @@
+{
+    "notifications": [
+        {
+            "title": " نتت سشيشسي سيس",
+            "text": "إنها ذروة 12، حيث خروج التلاميذ و العمال من مؤسساتهم ، لذلك وجب توخي الحذر خاصة عند أبواب المدارس",
+            "soundName": "",
+            "imageName": "",
+            "times": [
+                "19:20",
+                "19:22"
+            ],
+            "weather": {
+                "temperture": ""
+            },
+            "periodicity": true,
+            "numberNotified": 0,
+            "urgent": false,
+            "monthsNotDo": [
+                "1",
+                "2"
+            ]
+        },
+        {
+            "title": "سشيشس ",
+            "text": "نتيس سمخشسينمىش شمسنيتشنسي شمنيتهخصضتثض ثجحصضخثحجصضخث ",
+            "soundName": "",
+            "imageName": "",
+            "times": [
+                "14:05",
+                "14:05                                                                                                                                                                                                                              ",
+                "14:05"
+            ],
+            "weather": {
+                "temperture": ""
+            },
+            "periodicity": true,
+            "numberNotified": 0,
+            "urgent": true,
+            "monthsNotDo": [
+                "7",
+                "8"
+            ]
+        }
+    ]
+}

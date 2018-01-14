@@ -1,14 +1,22 @@
 <ion-view view-title="">
   <ion-content class="padding">
 
-    <div id="sqas-header-title">
-      <div style="width: 35%">
-        <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="">
-      </div>
-      <div style="padding-top: 14%">
-        قائمة الإعدادات
-      </div>
-    </div>
+      <div style="height: 20%" class="sqas-header">
+          <table style="height: 100% ">
+            <tr>
+              <td style="width: 70%">
+                <div>
+                  قائمة الإعدادات
+                </div>
+              </td>
+              <td>
+                  <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="">
+      
+                </td>
+            </tr>
+          </table>
+        </div>
+
     <br/>
     <div class="sqas-menu">
       <button class="button sqas-href-item" ng-click="goToPage('smart-notification')">
@@ -39,7 +47,7 @@
           </div>
         </div>
       </button>
-      <button class="button sqas-href-item" ng-click="goToPage('safe-modes')">
+<!--       <button class="button sqas-href-item" ng-click="goToPage('safe-modes')">
         <div class="sqas-menu-item">
           <div style="padding: 4px;">
             <img src="img/safe-modes.png" alt="">
@@ -52,7 +60,7 @@
             </div>
           </div>
         </div>
-      </button>
+      </button> -->
       <button class="button sqas-href-item" ng-click="goToPage('important-numbers')">
         <div class="sqas-menu-item">
           <div style="padding: 4px;">
@@ -60,8 +68,35 @@
           </div>
           <div>
             <div class="sqas-item-title">أرقام مهمة</div>
-            <div class="sqas-item-desc"> تزويد الهاتف ببعض الأرقام المهمة بالإضافة إلى ضبط الأرقام الضرورية الأخرى، والتي فد يحتاجها السائق فيما بعد ..
+            <div class="sqas-item-desc"> 
+               هذا الأختيار يسهل الإتصال بالأرقام المهمة التي قد يحتاجها السائق في الحاللات الخاصة ..
 
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="goToPage('archive')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/archive.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">أرشيف</div>
+            <div class="sqas-item-desc">
+              هنا تجد جيع الإشعارات المتوصل بها الى حدود هذه اللحطة.
+            </div>
+          </div>
+        </div>
+      </button>
+      <button class="button sqas-href-item" ng-click="goToPage('aboutus')">
+        <div class="sqas-menu-item">
+          <div style="padding: 4px;">
+            <img src="img/about.png" alt="">
+          </div>
+          <div>
+            <div class="sqas-item-title">حول التطبيق</div>
+            <div class="sqas-item-desc">
+              نبذة عن خصائص و وظائف التطبيق.
             </div>
           </div>
         </div>
