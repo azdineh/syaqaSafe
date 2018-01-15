@@ -9,8 +9,8 @@
               إشعار
             </div>
             <div ng-if="currentView=='dashmin'" dir="rtl">
-                {{today|date:'longDate'}} 
-               <span style="font-size: 4vmax"> {{today|date:'HH:mm'}}</span>
+              {{today|date:'longDate'}}
+              <span style="font-size: 4vmax"> {{today|date:'HH:mm'}}</span>
             </div>
             <div ng-if="currentView=='anti-somnolence'" class="sqas-header-tito">
               <div>مضاد الغفوة</div>
@@ -20,7 +20,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td ng-if="currentView=='main'">
             <img src="img/smart-notification.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='main'">
             <img src="img/logo.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='dashmin'">
             <img src="img/anti-somnolence.png" style="width: 100%;opacity: 0.85" alt="" ng-if="currentView=='anti-somnolence'">
@@ -34,7 +34,31 @@
     <div ng-if="currentView=='dashmin'" style="height: 78%">
       <table class="sqas-table-dashmin">
         <tr>
-          <td style="height: 66%">
+          <td style="height: 66%;vertical-align: middle">
+            <table id="sqas-sub-table">
+              <tr ng-if="weatherObj.main">
+                <td style="width: 70%;text-align: center;vertical-align: middle">
+                  <div style="font-size: 6vmax;" ng-if="weatherObj.main"> {{weatherObj.main.temp|sqastemp}}</div>
+                </td>
+                <td style="vertical-align:middle">
+                  <img ng-src="http://openweathermap.org/img/w/{{weatherObj.weather[0].icon}}.png" ng-if="weatherObj.main" alt="">
+                  <div style="font-size: 3vmax;position: relative;top: -2vmax">
+                    <span>{{weatherObj.weather[0].description|sqastempdescr}}</span>
+                  </div>
+
+                </td>
+                <tr ng-hide="weatherObj.main">
+                  <td>
+                    <div>حالة الطقس غير متوفر حاليا..</div>
+                  </td>
+                </tr>
+              </tr>
+              <tr>
+                <td colspan="2" style="vertical-align: middle;text-align: center">
+                  <img src="img/logo.png" class="sqas-main-logo" style="width: 100%;" alt="">
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
         <tr>
@@ -43,14 +67,14 @@
               <div class="button " ng-click="goToArchive()">
                 <img src="img/archive.png" alt="">
               </div>
-              <div class="button " ng-click="goToDash()"> 
-                  <img src="img/more.png" alt="">
+              <div class="button " ng-click="goToDash()">
+                <img src="img/more.png" alt="">
               </div>
-              <div class="button " ng-click="goToAntiSomnolence()" >
+              <div class="button " ng-click="goToAntiSomnolence()">
                 <img src="img/anti-somnolence.png" alt="" ng-class="antiSsomnolenceEenabled==true?'sqas-sub-logo':''">
               </div>
               <div class="button " ng-click="goToImportantNumbers()">
-                  <img src="img/important-numbers.png" alt="">
+                <img src="img/important-numbers.png" alt="">
               </div>
               <div class="button " ng-click="goToSmartNotification()">
                 <img src="img/smart-notification.png" alt="">

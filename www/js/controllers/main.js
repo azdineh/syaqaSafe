@@ -1,6 +1,6 @@
 angular.module('starter')
 
-    .controller('MainCtrl', function ($scope, mediator, notificator,weatherator, $window, $state, $interval) {
+    .controller('MainCtrl', function ($scope, mediator, notificator, weatherator, $window, $state, $interval) {
 
         /**
          * when safe condactinf is enable, phone pass to silent mode..
@@ -9,6 +9,7 @@ angular.module('starter')
          */
 
         $scope.notifications = $window.localStorage['sqas.notifications'] ? angular.fromJson($window.localStorage['sqas.notifications']) : [];
+        $scope.weatherObj = $window.localStorage['sqas.weatherObj'] ? angular.fromJson($window.localStorage['sqas.weatherObj']) : {};
 
         $scope.currentView = "dashmin";
         $scope.notification = {
@@ -50,11 +51,30 @@ angular.module('starter')
             mediator.cancelTimer();
         }
 
+        var counter = 0;
         var fctLaunch = function () {
 
             $scope.today = Date.now();
+            if (counter == 0) {
+                weatherator.getWeatherObj(function (res) {
+                    $scope.weatherObj = res;
+                    $window.localStorage['sqas.weatherObj'] = angular.toJson($scope.weatherObj);
+                });
+            }
+
             $interval(function () {
                 $scope.today = Date.now();
+                if (counter == 14) {
+                    weatherator.getWeatherObj(function (res) {
+                        $scope.weatherObj = res;
+                        $window.localStorage['sqas.weatherObj'] = angular.toJson($scope.weatherObj);
+                        counter = 0;
+                    });
+                }
+                else {
+                    counter += 1;
+                }
+
             }, 1000 * 60);
 
             $scope.antiSsomnolenceEenabled = $window.localStorage['sqas.antiSsomnolenceEenabled'] ? angular.fromJson($window.localStorage['sqas.antiSsomnolenceEenabled']) : false;
@@ -76,6 +96,8 @@ angular.module('starter')
                 $scope.currentView = "dashmin";
                 console.log("current view :" + $scope.currentView);
             });
+
+
 
         }
 
@@ -108,4 +130,36 @@ angular.module('starter')
             /*  */
         }
 
+    })
+    .filter('sqastemp', function () {
+        return function (input) {
+            var temp;
+            if (input != "") {
+                temp = Math.ceil(input) + " " + "°C";
+            } else {
+                temp="--"
+            }
+
+            return temp;
+        }
+    })
+    .filter('sqastempdescr', function () {
+        return function (input) {
+            var descr;
+            switch (input) {
+                case 'غائم جزئ':
+                    descr = "غائم جزئيا"
+                    break;
+
+                case '':
+                    descr = ""
+                    break;
+
+                default:
+                    descr = input;
+                    break;
+            }
+
+            return descr;
+        }
     })
