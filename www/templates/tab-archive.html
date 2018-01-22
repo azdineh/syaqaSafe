@@ -1,19 +1,24 @@
-<ion-view view-title="">
-  <ion-content class="padding">
-      <div style="height: 20%" class="sqas-header">
-          <table style="height: 100% ">
-            <tr>
-              <td style="width: 70%">
-                <div >
-                  أرشيف
-                </div>
-              </td>
-              <td>
-                  <img src="img/archive.png" style="width: 100%;opacity: 0.85" alt="">
-      
-                </td>
-            </tr>
-          </table>
-        </div>
+
+<ion-view view-title="" >
+  <ion-content class="padding" >
+    <div style="height: 20%;" class="sqas-header">
+      <table style="height: 100% ">
+        <tr>
+          <td style="width: 70%">
+            <div>
+              أرشيف
+            </div>
+          </td>
+          <td>
+            <img src="img/archive.png" style="width: 100%;opacity: 0.85" alt="">
+
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div style="padding-bottom: 4vmax">
+      <sqas-item ng-repeat="notif in notifications"></sqas-item>
+    </div>
+    
   </ion-content>
 </ion-view>

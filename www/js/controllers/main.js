@@ -1,6 +1,6 @@
 angular.module('starter')
 
-    .controller('MainCtrl', function ($scope, mediator, notificator, weatherator, $window, $state, $interval) {
+    .controller('MainCtrl', function ($scope, $rootScope, mediator, notificator, weatherator, $window, $state, $interval) {
 
         /**
          * when safe condactinf is enable, phone pass to silent mode..
@@ -9,8 +9,7 @@ angular.module('starter')
          */
 
         $scope.notifications = $window.localStorage['sqas.notifications'] ? angular.fromJson($window.localStorage['sqas.notifications']) : [];
-        $scope.weatherObj = $window.localStorage['sqas.weatherObj'] ? angular.fromJson($window.localStorage['sqas.weatherObj']) : {};
-
+        $scope.weatherObj = {};
         $scope.currentView = "dashmin";
         $scope.notification = {
             title: "عنوان مهم ",
@@ -51,31 +50,26 @@ angular.module('starter')
             mediator.cancelTimer();
         }
 
-        var counter = 0;
-        var fctLaunch = function () {
 
+        $scope.endInit = false;
+
+        var counter = 0;
+        $scope.initWhenTap = function () {
+            $scope.endInit = false;
+            counter = 0;
+            $scope.init();
+        }
+
+        $scope.init = function () {
             $scope.today = Date.now();
+
             if (counter == 0) {
-                weatherator.getWeatherObj(function (res) {
-                    $scope.weatherObj = res;
-                    $window.localStorage['sqas.weatherObj'] = angular.toJson($scope.weatherObj);
+                weatherator.initWeather(function (weatherObj) {
+                    $scope.weatherObj = weatherObj;
+                    $scope.endInit = true;
                 });
             }
 
-            $interval(function () {
-                $scope.today = Date.now();
-                if (counter == 14) {
-                    weatherator.getWeatherObj(function (res) {
-                        $scope.weatherObj = res;
-                        $window.localStorage['sqas.weatherObj'] = angular.toJson($scope.weatherObj);
-                        counter = 0;
-                    });
-                }
-                else {
-                    counter += 1;
-                }
-
-            }, 1000 * 60);
 
             $scope.antiSsomnolenceEenabled = $window.localStorage['sqas.antiSsomnolenceEenabled'] ? angular.fromJson($window.localStorage['sqas.antiSsomnolenceEenabled']) : false;
 
@@ -86,22 +80,9 @@ angular.module('starter')
             else {
                 //$scope.currentView = "main";
             }
-
-            notificator.launchNotificator(function (notification) {
-                $scope.notification.text = notification.text;
-                $scope.notification.title = notification.title;
-                $scope.notification.imageName = notification.imageName;
-                $scope.currentView = "main";
-            }, function () {
-                $scope.currentView = "dashmin";
-                console.log("current view :" + $scope.currentView);
-            });
-
-
-
         }
 
-        fctLaunch();
+
 
 
         var fctStop = function () {
@@ -110,12 +91,53 @@ angular.module('starter')
             }
         }
 
+
         if (ionic.Platform.isWebView()) {
             ionic.Platform.ready(function () {
+
+                $scope.init();
                 cordova.plugins.autoStart.enable();
+
+                if (!$scope.timerWeather) {
+                    $scope.timerWeather = $interval(function () {
+                        $scope.today = Date.now();
+
+                        if (counter == 15) {
+                            weatherator.initWeather(function (weatherObj) {
+                                $scope.weatherObj = weatherObj;
+                            });
+
+                            counter = 1;
+                        }
+                        else {
+                            counter += 1;
+                        }
+
+                    }, 1000 * 60);
+
+                }
+
+                notificator.launchNotificator(function (notification) {
+                    $scope.notification.text = notification.text;
+                    $scope.notification.title = notification.title;
+                    $scope.notification.imageName = notification.imageName;
+                    $scope.currentView = "main";
+                }, function () {
+                    $scope.currentView = "dashmin";
+                    console.log("current view :" + $scope.currentView);
+                });
+
+
+                $rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
+                    weatherator.initWeather(function (weatherObj) {
+                        $scope.weatherObj = weatherObj;
+                        $scope.endInit = true;
+                    });
+                })
+
                 $scope.$on('$ionicView.enter', function () {
                     // Anything you can think of
-                    fctLaunch();
+                    $scope.init();
 
                 });
 
@@ -130,19 +152,28 @@ angular.module('starter')
             /*  */
         }
 
+
+
     })
+
+
+
+    //filters
     .filter('sqastemp', function () {
         return function (input) {
             var temp;
             if (input != "") {
-                temp = Math.ceil(input) + " " + "°C";
+                temp = Math.ceil(input) + 3 + " " + "°C";
             } else {
-                temp="--"
+                temp = "--"
             }
 
             return temp;
         }
     })
+
+
+
     .filter('sqastempdescr', function () {
         return function (input) {
             var descr;

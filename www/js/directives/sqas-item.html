@@ -1,0 +1,21 @@
+<div class="sqas-cntr-archive" >
+    <div class="sqas-archive-item" >
+        <div class="sqas-archive-item-title">
+            <div>{{notif.title}}</div>
+            <div ng-if="hideContent">
+                <button class="button button-small button-outline icon ion-arrow-up-b assertive" style="color: yellow;" ng-click="showContent()"></button>
+            </div>
+            <div ng-if="!hideContent">
+                <button class="button button-small button-outline icon ion-arrow-down-b assertive" style="color: yellow;" ng-click="showContent()"></button>
+            </div>
+        </div>
+        <div class="sqas-archive-item-content" ng-if="hideContent">
+            <div >
+                <img ng-src="notifications/images/{{notif.imageName}}.png" style="margin-top: 1vmax" alt="">
+            </div>
+            <div class="sqas-archive-parg" style="white-space: pre-line;padding-bottom: 2vmax" dir="rtl">
+                {{notif.text}}
+            </div>
+        </div>
+    </div>
+</div>

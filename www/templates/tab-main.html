@@ -35,27 +35,41 @@
       <table class="sqas-table-dashmin">
         <tr>
           <td style="height: 66%;vertical-align: middle">
-            <table id="sqas-sub-table">
-              <tr ng-if="weatherObj.main">
-                <td style="width: 70%;text-align: center;vertical-align: middle">
-                  <div style="font-size: 6vmax;" ng-if="weatherObj.main"> {{weatherObj.main.temp|sqastemp}}</div>
+            <table id="sqas-sub-table" style="opacity: 0.7">
+              <tr ng-if="weatherObj.main && endInit==true">
+                <td style="width:50%;text-align: left;vertical-align: middle">
+                  <div style="font-size: 6vmax;"> {{weatherObj.main.temp|sqastemp}}</div>
                 </td>
-                <td style="vertical-align:middle">
-                  <img ng-src="http://openweathermap.org/img/w/{{weatherObj.weather[0].icon}}.png" ng-if="weatherObj.main" alt="">
+                <td style="text-align: right;vertical-align: middle;width: 50%">
+                  <img ng-src="http://openweathermap.org/img/w/{{weatherObj.weather[0].icon}}.png" ng-if="weatherObj.connected==true" alt="">
+                  <div style="height: 6vmax" ng-if="weatherObj.connected==false"></div>
                   <div style="font-size: 3vmax;position: relative;top: -2vmax">
                     <span>{{weatherObj.weather[0].description|sqastempdescr}}</span>
                   </div>
 
                 </td>
-                <tr ng-hide="weatherObj.main">
-                  <td>
-                    <div>حالة الطقس غير متوفر حاليا..</div>
-                  </td>
-                </tr>
+
+              </tr>
+              <tr ng-if="weatherObj.connected==false">
+                <td style="text-align: center">
+                  <div dir="rtl" style="opacity: 0.5;font-size: 1.5vmax">
+                    غير مرتبط بالأنترنت
+                  </div>
+                </td>
               </tr>
               <tr>
-                <td colspan="2" style="vertical-align: middle;text-align: center">
-                  <img src="img/logo.png" class="sqas-main-logo" style="width: 100%;" alt="">
+                <td colspan="2" style="vertical-align: middle;text-align: center" class="sqas-main-logo">
+                  <img src="img/logo.png" style="width: 100%;" alt="" ng-if="endInit==true" on-tap="initWhenTap()" />
+                  <ion-spinner class="spinner-energized" icon="circles" ng-if="endInit==false" style="zoom: 4"></ion-spinner>
+                </td>
+              </tr>
+              <tr>
+                <td ng-if="endInit==true" colspan="2 " style="vertical-align: middle;text-align: center ">
+                  <span ng-if="weatherObj.name">{{weatherObj.name}}</span>
+                  <img src="img/location.png " ng-if="weatherObj.name && weatherObj.onGeo==true " style="width: 3vmax;filter: invert();opacity: 0.7 "
+                    alt=" ">
+                  <img src="img/location-disabled.png " ng-if="weatherObj.onGeo==false " style="width: 3vmax;filter: invert();opacity: 0.7"
+                    alt=" ">
                 </td>
               </tr>
             </table>
@@ -63,21 +77,22 @@
         </tr>
         <tr>
           <td>
-            <div class="sqas-table-flx">
-              <div class="button " ng-click="goToArchive()">
-                <img src="img/archive.png" alt="">
+            <div class="sqas-table-flx ">
+              <div class="button " ng-click="goToArchive() ">
+                <img src="img/archive.png " alt=" ">
               </div>
-              <div class="button " ng-click="goToDash()">
-                <img src="img/more.png" alt="">
+              <div class="button " ng-click="goToDash() ">
+                <img src="img/more.png " alt=" ">
               </div>
-              <div class="button " ng-click="goToAntiSomnolence()">
-                <img src="img/anti-somnolence.png" alt="" ng-class="antiSsomnolenceEenabled==true?'sqas-sub-logo':''">
+              <div class="button " ng-click="goToAntiSomnolence() ">
+                <img src="img/anti-somnolence.png " alt=" " ng-class="antiSsomnolenceEenabled==true? 'sqas-sub-logo':
+                  '' ">
               </div>
-              <div class="button " ng-click="goToImportantNumbers()">
-                <img src="img/important-numbers.png" alt="">
+              <div class="button " ng-click="goToImportantNumbers() ">
+                <img src="img/important-numbers.png " alt=" ">
               </div>
-              <div class="button " ng-click="goToSmartNotification()">
-                <img src="img/smart-notification.png" alt="">
+              <div class="button " ng-click="goToSmartNotification() ">
+                <img src="img/smart-notification.png " alt=" ">
               </div>
             </div>
           </td>
@@ -85,60 +100,66 @@
       </table>
     </div>
 
-    <div style="position: relative;height: 76%;" ng-if="currentView=='main'">
-      <div class="ion ion-arrow-up-b" style="font-size: 6vmax;position: absolute ;color: rgb(0, 185, 252);top:-3.5vmax;right: 6.5vmax"></div>
+    <div style="position: relative;height: 76%; " ng-if="currentView=='main' ">
+      <div class="ion ion-arrow-up-b " style="font-size: 6vmax;position: absolute ;color: rgb(0, 185, 252);top:-3.5vmax;right:
+                  6.5vmax "></div>
 
-      <div class="sqas-main-container" style="border: 2px solid rgb(0, 185, 252);border-radius: 12px;overflow: hidden;border-top: 8px solid rgb(0, 185, 252);">
-        <div style="flex-basis: 5%;font-size: 3.2vmax;color: rgb(0, 0, 0);font-weight: bolder;padding-top: 14px;padding-bottom: 10px;padding-right: 8px;">
+      <div class="sqas-main-container " style="border: 2px solid rgb(0, 185, 252);border-radius: 12px;overflow: hidden;border-top:
+                  8px solid rgb(0, 185, 252); ">
+        <div style="flex-basis: 5%;font-size: 3.2vmax;color: rgb(0, 0, 0);font-weight: bolder;padding-top: 14px;padding-bottom:
+                  10px;padding-right: 8px; ">
           {{notification.title}}
-          <span class="ion ion-arrow-left-b"></span>
+          <span class="ion ion-arrow-left-b "></span>
         </div>
 
-        <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax;text-align: right;padding-right: 8px;color: black" dir="rtl">
+        <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax;text-align: right;padding-right: 8px;color: black
+                  " dir="rtl ">
           <span>{{today|date:'longDate'}}</span> -
           <span>{{today|date:'shortTime'}}</span>
         </div>
 
-        <div style="flex-basis: 20%">
-          <img src="img/anti-somnolence-bann2.jpg" style="width: 100%;padding:8px" alt="">
+        <div style="flex-basis: 20% ">
+          <img ng-src="notifications/images/{{notification.imageName}}.png" style="width: 100%;padding:8px " alt=" ">
         </div>
-        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;" class="sqas-paragraphe" dir="rtl">
+        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;white-space: pre-line" class="sqas-paragraphe " dir="rtl ">
           {{notification.text}}
         </div>
 
 
-        <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.3)" id="sqas-barr-cntr">
-          <div id="sqas-barr" style="height: 100%;background-color: rgb(200, 33, 15);"></div>
+        <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.3) " id="sqas-barr-cntr ">
+          <div id="sqas-barr " style="height: 100%;background-color: rgb(200, 33, 15); "></div>
         </div>
 
       </div>
 
-      <!--       <div style="flex-basis: 10%">
-        <button class="button icon-right ion-chevron-right button-calm button-clear" style="font-family: sqasfont;" ng-click="goToDash()">إعدادات</button>
+      <!--       <div style="flex-basis: 10% ">
+        <button class="button icon-right ion-chevron-right button-calm button-clear " style="font-family: sqasfont;
+                  " ng-click="goToDash() ">إعدادات</button>
       </div> -->
     </div>
 
 
-    <div class="sqas-content-container" style="height: 78%;padding: 5%;padding-top: 25%;" ng-if="currentView=='anti-somnolence'">
-      <!--       <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax" dir="rtl">
+    <div class="sqas-content-container " style="height: 78%;padding: 5%;padding-top: 25%; " ng-if="currentView=='anti-somnolence' ">
+      <!--       <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax " dir="rtl ">
         <span>{{today|date:'longDate'}}</span> -
         <span>{{today|date:'shortTime'}}</span>
       </div> -->
 
       <!--       
-        <div style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px;padding-bottom: 10px"> الغفوة أخطر مما تعتقد
-          <span class="ion ion-arrow-left-b"></span>
+        <div style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px;padding-bottom: 10px "> الغفوة أخطر مما تعتقد
+          <span class="ion ion-arrow-left-b "></span>
         </div> -->
-      <div style="flex-grow: 1;" class="sqas-paragraphe" dir="rtl">
-        <img src="img/anti-somnolence.png" class="sqas-sub-logo" style="width: 100%" alt="">
+      <div style="flex-grow: 1; " class="sqas-paragraphe " dir="rtl ">
+        <img src="img/anti-somnolence.png " class="sqas-sub-logo " style="width: 100% " alt=" ">
       </div>
 
-      <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05)" id="sqas-barr-cntr">
-        <div id="sqas-barr" style="height: 100%;background-color: yellow;"></div>
+      <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05) " id="sqas-barr-cntr ">
+        <div id="sqas-barr " style="height: 100%;background-color: yellow; "></div>
       </div>
 
-      <!--       <div style="flex-basis: 10%">
-        <button class="button icon-right ion-chevron-right button-calm button-clear" style="font-family: sqasfont;" ng-click="goToDash()">إعدادات</button>
+      <!--       <div style="flex-basis: 10% ">
+        <button class="button icon-right ion-chevron-right button-calm button-clear " style="font-family: sqasfont;
+                  " ng-click="goToDash() ">إعدادات</button>
       </div> -->
     </div>
 

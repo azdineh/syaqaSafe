@@ -1,10 +1,13 @@
 angular.module('starter')
-    .factory('azdutils', function ($q, $http,$filter) {
+    .factory('azdutils', function ($q, $http, $filter) {
 
 
         var azdutils = function () {
             var vm = {}
-            vm.urlsuffix = "/android_asset/www/";
+            vm.urlsuffix = "";
+            if (ionic.Platform.isWebView()) {
+                vm.urlsuffix = "/android_asset/www/";
+            }
             vm.getRandomInt = function (min, max) {
                 min = Math.ceil(min);
                 max = Math.floor(max);

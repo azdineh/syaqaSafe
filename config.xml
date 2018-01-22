@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="azdineh.apps.syaqasafe" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>syaqaSafe</name>
+    <name>Syaqa Safe</name>
     <description>A mobile application for automobile drivers..</description>
     <author email="azdineh@gmail.com" href="https://github.com/azdineh/">SyaqaSafe developpers Team</author>
     <content src="index.html" />
