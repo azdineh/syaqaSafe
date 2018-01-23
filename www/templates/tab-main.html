@@ -108,35 +108,52 @@
                   8px solid rgb(0, 185, 252); ">
         <div style="flex-basis: 5%;font-size: 3.2vmax;color: rgb(0, 0, 0);font-weight: bolder;padding-top: 14px;padding-bottom:
                   10px;padding-right: 8px; ">
-          {{notification.title}}
-          <span class="ion ion-arrow-left-b "></span>
+          <table dir="rtl" style="width: 100%">
+            <tr>
+              <td>
+
+                <span class="ion ion-arrow-left-b " style="width: 2vmax;position: relative;top: 0.5vmax"></span>
+
+              </td>
+              <td style="text-align: justify;padding-left: 0.7vmax">
+                {{notification.title}}
+              </td>
+            </tr>
+          </table>
         </div>
 
-        <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax;text-align: right;padding-right: 8px;color: black
-                  " dir="rtl ">
-          <span>{{today|date:'longDate'}}</span> -
-          <span>{{today|date:'shortTime'}}</span>
+        <div style="flex-basis: 5%;font-size: 2.1vmax;text-align: right;padding-right: 8px;color: black
+                  " dir="rtl">
+          <div>
+            <span>{{today|date:'longDate'}}</span>
+            -
+            <span>{{today|date:'shortTime'}}</span>
+          </div>
+
         </div>
 
         <div style="flex-basis: 20% ">
           <img ng-src="notifications/images/{{notification.imageName}}.png" style="width: 100%;padding:8px " alt=" ">
         </div>
-        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;white-space: pre-line" class="sqas-paragraphe " dir="rtl ">
+        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;white-space: pre-line;text-align: justify" class="sqas-paragraphe "
+          dir="rtl">
           {{notification.text}}
         </div>
 
 
-        <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.3) " id="sqas-barr-cntr ">
-          <div id="sqas-barr " style="height: 100%;background-color: rgb(200, 33, 15); "></div>
+        <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.3) " id="sqas-barr-cntr">
+          <div id="sqas-barr" style="height: 100% "></div>
         </div>
 
       </div>
+
 
       <!--       <div style="flex-basis: 10% ">
         <button class="button icon-right ion-chevron-right button-calm button-clear " style="font-family: sqasfont;
                   " ng-click="goToDash() ">إعدادات</button>
       </div> -->
     </div>
+
 
 
     <div class="sqas-content-container " style="height: 78%;padding: 5%;padding-top: 25%; " ng-if="currentView=='anti-somnolence' ">
@@ -154,7 +171,7 @@
       </div>
 
       <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05) " id="sqas-barr-cntr ">
-        <div id="sqas-barr " style="height: 100%;background-color: yellow; "></div>
+        <div id="sqas-barr" style="height: 100%;background-color: yellow; "></div>
       </div>
 
       <!--       <div style="flex-basis: 10% ">

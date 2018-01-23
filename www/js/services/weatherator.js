@@ -26,6 +26,8 @@ angular.module('starter')
                 }, function errorCallback(response) {
                     console.log("Error while getting info from weather..")
                     console.log(response);
+                    var weatherObj = $window.localStorage['sqas.weatherObj'] ? angular.fromJson($window.localStorage['sqas.weatherObj']) : {};
+                    callback(weatherObj);
                 });
             }
 

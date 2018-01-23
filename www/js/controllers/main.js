@@ -12,11 +12,11 @@ angular.module('starter')
         $scope.weatherObj = {};
         $scope.currentView = "dashmin";
         $scope.notification = {
-            title: "عنوان مهم ",
+            title: "عنوانعنوان عنوان عنوعنوان عنوعنوان عنوعنوان عنوعنوان عنوعنوان عنو عنوان عنوعنوان عنوعنوان عنو عنوان عنوان مهم ",
             text: "نتبه للحيوانات أمامكنتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامكنتبه للحيوانات أمامك"
         };
         //$scope.currentView = "anti-somnolence";
-
+        $scope.today = Date.now();
 
         $scope.goToDash = function () {
             $state.go('tab.dash');
@@ -87,7 +87,7 @@ angular.module('starter')
 
         var fctStop = function () {
             if ($scope.antiSsomnolenceEenabled) {
-                $scope.stopAntiSomnolence();
+                //  $scope.stopAntiSomnolence();
             }
         }
 
@@ -118,10 +118,10 @@ angular.module('starter')
                 }
 
                 notificator.launchNotificator(function (notification) {
+                    $scope.currentView = "main";
                     $scope.notification.text = notification.text;
                     $scope.notification.title = notification.title;
                     $scope.notification.imageName = notification.imageName;
-                    $scope.currentView = "main";
                 }, function () {
                     $scope.currentView = "dashmin";
                     console.log("current view :" + $scope.currentView);

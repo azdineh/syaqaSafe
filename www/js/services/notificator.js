@@ -54,6 +54,14 @@ angular.module('starter')
              */
             var counter = 0;
 
+            vm.notificate = function (notification, callbacki, callbackj) {
+                mediator.playNotification(notification, true, function () {
+                    callbacki()
+                }, function () {
+                    callbackj()
+                });
+            }
+
             vm.launchNotificator = function (callbacki, callbackj) {
 
                 vm.fillNotifications();
@@ -64,42 +72,36 @@ angular.module('starter')
 
                             vm.notifications.forEach(function (notification, index, arr) {
                                 if (notification.urgent == true) {
-                                    //launch notification
-
-                                    if (mediator.isPlaying == true) {
-                                        mediator.media.stop();
-                                    }
-                                    mediator.playOnePulse(1000, notification.soundName, true, function () {
-                                        callbacki(notification);
+                                    //play notification
+                                    vm.notificate(notification, function () {
+                                        callbacki(notification)
                                     }, function () {
                                         callbackj();
                                     });
                                 }
                                 //not urgent
-                                if (!azdutils.isValIn(azdutils.currentMonthNumber(), notification.monthsNotDo)) {
-                                    if (azdutils.isValIn(azdutils.currentHHmm(), notification.times)) {
-                                        if (notification.weather.temperture <= vm.currentTemperture || notification.weather.temperture >= notification.currentTemperture || notification.weather.temperture == "") {
-                                            //launch a notification.
-                                            if (mediator.isPlaying == true) {
-                                                mediator.media.stop();
-                                            }
-                                            mediator.playOnePulse(1500, notification.soundName, true, function () {
-                                                callbacki(notification);
-                                            }, function () {
-                                                callbackj();
-                                            });
-                                        }
-                                        else {
-                                            console.log("weather not do")
-                                        }
-                                    }
-                                    else {
-                                        console.log("No notification for this moment..");
-                                    }
-                                }
-                                else {
-                                    console.log("Month not do")
-                                }
+                                /*                                 if (!azdutils.isValIn(azdutils.currentMonthNumber(), notification.monthsNotDo)) {
+                                                                    if (azdutils.isValIn(azdutils.currentHHmm(), notification.times)) {
+                                                                        if (notification.weather.temperture <= vm.currentTemperture || notification.weather.temperture >= notification.currentTemperture || notification.weather.temperture == "") {
+                                                                            //play notification
+                                                                            vm.notificate(notification, function () {
+                                                                                callbacki()
+                                                                            }, function () {
+                                                                                callbackj(notification);
+                                                                            });
+                                
+                                                                        }
+                                                                        else {
+                                                                            console.log("weather not do")
+                                                                        }
+                                                                    }
+                                                                    else {
+                                                                        console.log("No notification for this moment..");
+ callbacki                                                                   }
+                                                                }
+                                                                else {
+                                                                    console.log("Month not do")
+                                                                } */
                             }, this);
                         }
 
