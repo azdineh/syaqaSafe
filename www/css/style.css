@@ -284,3 +284,13 @@ float: right;
     line-height: 3.5vmax;
     opacity: 0.5;
 }
+
+.sqas-ul{
+    list-style: square;
+}
+
+.sqas-ul li{
+    font-size: 2.5vmax;
+    margin-bottom: 1.5vmax;
+    margin-right: 4vmax;
+}

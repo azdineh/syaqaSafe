@@ -1,17 +1,21 @@
 angular.module('starter')
-.controller('ArchiveCtrl', function ($scope, $state,azdutils) {
-    $scope.goToMain = function () {
-        $state.go('tab.main');
-    }
+    .controller('ArchiveCtrl', function ($scope, $state, azdutils, $window) {
+        $scope.goToMain = function () {
+            $state.go('tab.main');
+        }
 
-    $scope.notifications=[];
+        var fct = function () {
 
-    azdutils.getSSfromJson("notifications/notifications.json")
-    .then(function (arr) {
-        $scope.notifications = arr.notifications;
+            $scope.numOfmsgNotRead = $window.localStorage['sqas.msgNotRead'] ? angular.fromJson($window.localStorage['sqas.msgNotRead']) : 0;
+            $scope.notifications = $window.localStorage['sqas.notificationsInbox'] ? angular.fromJson($window.localStorage['sqas.notificationsInbox']) : [];
+            $window.localStorage['sqas.msgNotRead'] = angular.toJson(0);
+        }
 
-    }, function (err) {
-        console.log("Error while getting notification json file..");
-        console.log(err);
-    });
-})
+        fct();
+
+        $scope.$on('$ionicView.enter', function () {
+            // Anything you can think of
+            fct();
+        });
+
+    })

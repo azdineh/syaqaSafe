@@ -2,7 +2,7 @@
   <ion-content class="padding" scroll="false">
 
     <div style="height: 20%" class="sqas-header">
-      <table style="height: 100% ">
+      <table style="height: 100%;width: 100% ">
         <tr>
           <td style="width: 70%">
             <div ng-if="currentView=='main'">
@@ -12,7 +12,7 @@
               {{today|date:'longDate'}}
               <span style="font-size: 4vmax"> {{today|date:'HH:mm'}}</span>
             </div>
-            <div ng-if="currentView=='anti-somnolence'" class="sqas-header-tito">
+            <div ng-if="currentView=='anti-somnolence'">
               <div>مضاد الغفوة</div>
               <div dir="rtl" style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px">
                 تنبيه صوتي
@@ -60,7 +60,7 @@
               <tr>
                 <td colspan="2" style="vertical-align: middle;text-align: center" class="sqas-main-logo">
                   <img src="img/logo.png" style="width: 100%;" alt="" ng-if="endInit==true" on-tap="initWhenTap()" />
-                  <ion-spinner class="spinner-energized" icon="circles" ng-if="endInit==false" style="zoom: 4"></ion-spinner>
+                  <ion-spinner class="spinner-energized" icon="circles" ng-if="endInit==false" style="zoom: 3"></ion-spinner>
                 </td>
               </tr>
               <tr>
@@ -79,14 +79,17 @@
           <td>
             <div class="sqas-table-flx ">
               <div class="button " ng-click="goToArchive() ">
+                <span class="badge badge-assertive" style="position: absolute;top:8vmax;right: 0.8vmax;opacity: 0.7" ng-if="msgNotRead>0">+{{msgNotRead}}</span>
+
                 <img src="img/archive.png " alt=" ">
               </div>
               <div class="button " ng-click="goToDash() ">
                 <img src="img/more.png " alt=" ">
               </div>
               <div class="button " ng-click="goToAntiSomnolence() ">
-                <img src="img/anti-somnolence.png " alt=" " ng-class="antiSsomnolenceEenabled==true? 'sqas-sub-logo':
-                  '' ">
+                <span style="position: absolute;top:8vmax;right: 0.8vmax;opacity: 0.7;font-size: 1.5vmax;color: white" ng-if="antiSsomnolenceEenabled==true">
+                  ~{{notifAntiSomnolence.delay/60000|number:1}} min</span>
+                <img src="img/anti-somnolence.png " alt=" " ng-class="antiSsomnolenceEenabled==true? 'sqas-sub-logo':'' ">
               </div>
               <div class="button " ng-click="goToImportantNumbers() ">
                 <img src="img/important-numbers.png " alt=" ">
@@ -115,7 +118,7 @@
                 <span class="ion ion-arrow-left-b " style="width: 2vmax;position: relative;top: 0.5vmax"></span>
 
               </td>
-              <td style="text-align: justify;padding-left: 0.7vmax">
+              <td style="text-align: justify;padding-left: 1vmax;line-height: 3.5vmax">
                 {{notification.title}}
               </td>
             </tr>
@@ -133,11 +136,13 @@
         </div>
 
         <div style="flex-basis: 20% ">
-          <img ng-src="notifications/images/{{notification.imageName}}.png" style="width: 100%;padding:8px " alt=" ">
+          <img ng-src="notifications/images/{{notification.imageName}}.png" style="width: 100%;padding:8px;" alt=" ">
         </div>
-        <div style="flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;white-space: pre-line;text-align: justify" class="sqas-paragraphe "
-          dir="rtl">
+        <div style="position: relative;top:-2vmax;flex-grow: 1;overflow-y: scroll;padding: 8px;color: black;white-space:pre-line ;text-align: justify;"
+          class="sqas-paragraphe " dir="rtl">
           {{notification.text}}
+
+          <!--  <button class="button icon-left ion-chevron-left" ng-click="stopPlying()">رجوع للقائمة</button> -->
         </div>
 
 
@@ -147,7 +152,6 @@
 
       </div>
 
-
       <!--       <div style="flex-basis: 10% ">
         <button class="button icon-right ion-chevron-right button-calm button-clear " style="font-family: sqasfont;
                   " ng-click="goToDash() ">إعدادات</button>
@@ -156,7 +160,7 @@
 
 
 
-    <div class="sqas-content-container " style="height: 78%;padding: 5%;padding-top: 25%; " ng-if="currentView=='anti-somnolence' ">
+    <div class="sqas-content-container " style="height: 74%;padding: 2%; " ng-if="currentView=='anti-somnolence' ">
       <!--       <div style="flex-basis: 5%; text-align: left;font-size: 2.1vmax " dir="rtl ">
         <span>{{today|date:'longDate'}}</span> -
         <span>{{today|date:'shortTime'}}</span>
@@ -166,11 +170,13 @@
         <div style="flex-basis: 5%;font-size: 3.2vmax;color: yellow;padding-top: 14px;padding-bottom: 10px "> الغفوة أخطر مما تعتقد
           <span class="ion ion-arrow-left-b "></span>
         </div> -->
-      <div style="flex-grow: 1; " class="sqas-paragraphe " dir="rtl ">
-        <img src="img/anti-somnolence.png " class="sqas-sub-logo " style="width: 100% " alt=" ">
+      <div style="flex-grow: 1;display: table;height: 100% ">
+        <div style="display:table-cell ;vertical-align: middle;text-align: center">
+          <img src="img/anti-somnolence.png " class="sqas-sub-logo " style="width: 90% " alt=" ">
+        </div>
       </div>
 
-      <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05) " id="sqas-barr-cntr ">
+      <div style="flex-basis: 4%;margin-top: 6px;background-color: rgba(100,100,100,0.05) " id="sqas-barr-cntr">
         <div id="sqas-barr" style="height: 100%;background-color: yellow; "></div>
       </div>
 

@@ -8,14 +8,15 @@ angular.module('starter')
          * 
          */
 
-        $scope.notifications = $window.localStorage['sqas.notifications'] ? angular.fromJson($window.localStorage['sqas.notifications']) : [];
+        // $scope.notifications = $window.localStorage['sqas.notifications'] ? angular.fromJson($window.localStorage['sqas.notifications']) : [];
         $scope.weatherObj = {};
         $scope.currentView = "dashmin";
         $scope.notification = {
-            title: "عنوانعنوان عنوان عنوعنوان عنوعنوان عنوعنوان عنوعنوان عنوعنوان عنو عنوان عنوعنوان عنوعنوان عنو عنوان عنوان مهم ",
-            text: "نتبه للحيوانات أمامكنتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامكنتبه للحيوانات أمامك"
+            title: "عنوانعنوان عنوان عنوعنون عنو عنوان عنوان مهم ",
+            text: "نتبه للحيوانات أمامكنتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامك نتبه للحيوانات أمامكنتبه للحيوانات أمامك",
+            imageName: "ramadan-01"
         };
-        //$scope.currentView = "anti-somnolence";
+
         $scope.today = Date.now();
 
         $scope.goToDash = function () {
@@ -35,7 +36,8 @@ angular.module('starter')
         }
 
 
-        $scope.launchAnitSomnelence = function () {
+
+/*         $scope.launchAnitSomnelence = function () {
             // play 3 vocal advices
             // play a countinous random sound short pulse by rendom delaies..
             mediator.launchPlayingPulses(function () {
@@ -48,7 +50,7 @@ angular.module('starter')
 
         $scope.stopAntiSomnolence = function () {
             mediator.cancelTimer();
-        }
+        } */
 
 
         $scope.endInit = false;
@@ -72,24 +74,18 @@ angular.module('starter')
 
 
             $scope.antiSsomnolenceEenabled = $window.localStorage['sqas.antiSsomnolenceEenabled'] ? angular.fromJson($window.localStorage['sqas.antiSsomnolenceEenabled']) : false;
+            $scope.msgNotRead = $window.localStorage['sqas.msgNotRead'] ? angular.fromJson($window.localStorage['sqas.msgNotRead']) : 0;
 
-            if ($scope.antiSsomnolenceEenabled) {
-
-                $scope.launchAnitSomnelence();
-            }
-            else {
-                //$scope.currentView = "main";
-            }
         }
 
 
 
 
-        var fctStop = function () {
+/*         var fctStop = function () {
             if ($scope.antiSsomnolenceEenabled) {
                 //  $scope.stopAntiSomnolence();
             }
-        }
+        } */
 
 
         if (ionic.Platform.isWebView()) {
@@ -116,15 +112,37 @@ angular.module('starter')
                     }, 1000 * 60);
 
                 }
+                /*                 $scope.stopPlying = function () {
+                                    mediator.stopSound(function () {
+                                        $scope.currentView = "dashmin";
+                                    });
+                                } */
 
                 notificator.launchNotificator(function (notification) {
-                    $scope.currentView = "main";
-                    $scope.notification.text = notification.text;
-                    $scope.notification.title = notification.title;
-                    $scope.notification.imageName = notification.imageName;
+                    if (notification.isAntiSomnolenceNotif == true) {
+                        $scope.currentView = "anti-somnolence";
+                        $scope.notification.text = "";
+                        $scope.notification.title = "";
+                        $scope.notification.imageName = "";
+                        $scope.antiSonolenceDelay = notification.delay;
+                    }
+                    else {
+                        $scope.currentView = "main";
+                        $scope.notification.text = notification.text;
+                        $scope.notification.title = notification.title;
+                        $scope.notification.imageName = notification.imageName != null ? notification.imageName : 'nosoundimage';
+
+                        $scope.msgNotRead += 1;
+                        $window.localStorage['sqas.msgNotRead'] = $scope.msgNotRead;
+                    }
                 }, function () {
-                    $scope.currentView = "dashmin";
-                    console.log("current view :" + $scope.currentView);
+                    if (!mediator.alreadyClosed) {
+                        $scope.currentView = "dashmin";
+                        console.log("current view :" + $scope.currentView);
+                    }
+                }, function (notifAntiSomnolence) {
+                    console.log("Anti somnolence notife ..");
+                    $scope.notifAntiSomnolence = notifAntiSomnolence;
                 });
 
 
@@ -142,7 +160,7 @@ angular.module('starter')
                 });
 
                 $scope.$on('$ionicView.leave', function () {
-                    fctStop();
+                    
                 });
 
             });
@@ -163,7 +181,7 @@ angular.module('starter')
         return function (input) {
             var temp;
             if (input != "") {
-                temp = Math.ceil(input) + 3 + " " + "°C";
+                temp = Math.ceil(input) + " " + "°C";
             } else {
                 temp = "--"
             }
